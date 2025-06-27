@@ -97,6 +97,14 @@ host.name: WKSTN-* AND winlog.event_id: 8
 
 #Persistence: (winlogbeat)#
 host.name: WKSTN-* AND (winlog.event_id: 4698 OR (*schtasks* OR *Register-ScheduledTask*))
+
+	@Colum Filter:
+			winlog.computer_name
+			user.name
+			process.command_line
+			winlog.event_id
+			winlog.event_data.TaskName
+
 host.name: WKSTN-* AND winlog.event_id: 13 AND winlog.channel: Microsoft-Windows-Sysmon/Operational
 
 
