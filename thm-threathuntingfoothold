@@ -69,6 +69,15 @@ host.name: WKSTN-* AND winlog.event_id: (1 OR 3) AND process.parent.pid: 1832
 #Defense Evasion : (winlogbeat)#
 
 host.name: WKSTN-* AND (*DisableRealtimeMonitoring* OR *RemoveDefinitions*)
+
+	@Colum Filter:
+			winlog.computer_name
+			user.name
+			process.parent.command_line
+			process.name
+			process.command_line
+
+
 host.name: WKSTN-* AND winlog.event_id: 1102
 host.name: WKSTN-* AND winlog.event_id: 8
 
