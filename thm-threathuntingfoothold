@@ -32,7 +32,21 @@ host.name: WKSTN-* AND *Update.zip*
 #Execution : (winlogbeat)#
 host.name: WKSTN-* AND winlog.event_id: 4104
 host.name: WKSTN-* AND winlog.event_id: 1 AND process.name: (cmd.exe OR powershell.exe)
+	@Colum Filter:
+			winlog.computer_name
+			winlog.user.name
+			powershell.file.script_block_text  (NOT "Set-StrictMode" at filtering, those might use for legitimate)
+
 host.name: WKSTN-* AND winlog.event_id: (1 OR 3) AND (process.name: (mshta.exe OR certutil.exe OR regsvr32.exe) OR process.parent.name: (mshta.exe OR certutil.exe OR regsvr32.exe))
+
+	@Colum Filter:
+			winlog.computer_name
+			user.name
+			process.parent.command_line
+			process.name
+			process.command_line
+			destination.ip
+
 host.name: WKSTN-* AND winlog.event_id: (1 OR 3) AND (process.name: (*python* OR *php* OR *nodejs*) OR process.parent.name: (*python* OR *php* OR *nodejs*))
 host.name: WKSTN-* AND winlog.event_id: (1 OR 3) AND process.parent.pid: 1832  
 
