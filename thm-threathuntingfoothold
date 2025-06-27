@@ -130,6 +130,10 @@ host.name: WKSTN-* AND winlog.event_id: 13 AND winlog.channel: Microsoft-Windows
 #Command and Control (packetbeat)
 
 network.protocol: dns AND NOT dns.question.name: *arpa 
+	
+	@Colum Filter:
+			query 
+
 network.protocol: dns AND NOT dns.question.name: *arpa AND dns.question.registered_domain: golge.xyz AND host.name: WKSTN-1 
 host.name: WKSTN-1* AND destination.ip: 167.71.198.43 AND destination.port: 53
 host.name: WKSTN-1* AND winlog.event_id: 1 AND process.parent.executable: "C:\\Windows\\Temp\\installer.exe"
